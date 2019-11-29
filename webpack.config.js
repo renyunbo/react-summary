@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 //配置html模板，每个插件都是一个雷，所以命名的时候最好首字母大写
 let HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -12,17 +13,17 @@ module.exports = {
         filename: '[name].[hash].bundle.js',      // 打包后的文件名称
         path: path.resolve('dist')  // 打包后的目录，必须是绝对路径
     },
-    devServer:{
-        contentBase:'./dist',    //服务器启动的目录
-        open:true,   //自动打开浏览器
-        proxy:{    //设置代理，可用于本地mock数据，本地自己启动另外一个服务
-            "/api":{
-                target:"http://localhost:9092"
+    devServer: {
+        contentBase: './dist',    //服务器启动的目录
+        open: true,   //自动打开浏览器
+        proxy: {    //设置代理，可用于本地mock数据，本地自己启动另外一个服务
+            "/api": {
+                target: "http://localhost:9092"
             }
         },
-        port:8083, //指定端口号
-        hot:true,   //开启HMR(Hot Module Replacement)热模块替换,由于是webpack自带的，所以要引入webpack ，监控并更新js模块的工作vue等框架自己做了，否则需要自己手动监控 
-        hotOnly:true
+        port: 8083, //指定端口号
+        hot: true,   //开启HMR(Hot Module Replacement)热模块替换,由于是webpack自带的，所以要引入webpack ，监控并更新js模块的工作vue等框架自己做了，否则需要自己手动监控 
+        hotOnly: true
     },
     module: {
         rules: [
@@ -89,7 +90,19 @@ module.exports = {
         new ExtractTextWebpackPlugin('css/style.css'),
         //打包前先清空dist目录
         new CleanWebpackPlugin(),
-
+        // 热更新，热更新不是刷新
+        new webpack.HotModuleReplacementPlugin()
     ],
-    devtool:'source-map'     //设置文件映射
+    devtool: 'source-map',     //设置文件映射
+    resolve: {
+        // 别名
+        alias: {
+            pages: path.join(__dirname, 'src/pages'),
+            component: path.join(__dirname, 'src/component'),
+            actions: path.join(__dirname, 'src/redux/actions'),
+            reducers: path.join(__dirname, 'src/redux/reducers'),
+        },
+        // 省略后缀
+        extensions: ['.js', '.jsx', '.json', '.css', '.scss', '.less']
+    }
 }
