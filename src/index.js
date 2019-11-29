@@ -1,3 +1,8 @@
+import React from 'react';
+import ReactDom from 'react-dom';
+
+import getRouter from './router/router';
+
 import 'babel-polyfill';
 import './css/style.less';
 import './css/index.less';
@@ -7,3 +12,9 @@ if(module.hot){
     module.hot.accept();
 }
 console.log('bbbbbbb');
+
+
+ReactDom.render(
+    getRouter(),
+    document.getElementById("app")
+);
