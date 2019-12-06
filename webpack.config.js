@@ -7,6 +7,53 @@ let ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 //清空生成的文件
 let { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');//拷贝静态文件
+const argv = require('yargs-parser')(process.argv.slice(2));
+const pro = argv.mode == 'production' ? true : false;  //  区别是生产环境和开发环境
+
+console.warn('argv---------', pro);
+let plu = [];
+//公共插件
+plu.push(
+    //打包前先清空dist目录
+    new CleanWebpackPlugin(),
+     //拷贝静态文件
+     new CopyWebpackPlugin([
+        {
+            from: 'src/public/',
+            to: ''
+        }
+    ])
+);
+if (pro) {
+    //线上环境
+    plu.push(
+        
+        //通过new一下这个类来使用插件
+        new HtmlWebpackPlugin({
+            //在src目录下创建一个index.html页面当做模板来使用
+            title: 'react-summary',
+            template: './src/index.html',
+            hash: true,//会在打包好的bundle.js后面加上hash串
+            inject: 'body',//js等具体注入的位置
+        }),
+        // 拆分后会把css文件放到dist目录下的css/style.css
+        new ExtractTextWebpackPlugin('css/style.[chunkhash].css'),
+    );
+} else {
+    plu.push(
+        //通过new一下这个类来使用插件
+        new HtmlWebpackPlugin({
+            //在src目录下创建一个index.html页面当做模板来使用
+            title: 'react-summary',
+            template: './src/index.html',
+            inject: 'body',//js等具体注入的位置
+        }),
+        // 拆分后会把css文件放到dist目录下的css/style.css
+        new ExtractTextWebpackPlugin('css/style.css'),
+        // 热更新，热更新不是刷新
+        new webpack.HotModuleReplacementPlugin(),
+    )
+}
 
 module.exports = {
     entry: './src/index.js',    // 入口文件
@@ -17,11 +64,11 @@ module.exports = {
     devServer: {
         contentBase: './dist',    //服务器启动的目录
         open: true,   //自动打开浏览器
-        // proxy: {    //设置代理，可用于本地mock数据，本地自己启动另外一个服务
-        //     "/api": {
-        //         target: "http://127.0.0.1:8083/"
-        //     }
-        // },
+        proxy: {    //设置代理，可用于本地mock数据，本地自己启动另外一个服务
+            "/api": {
+                target: "http://127.0.0.1:8083/"
+            }
+        },
         port: 8083, //指定端口号
         hot: true,   //开启HMR(Hot Module Replacement)热模块替换,由于是webpack自带的，所以要引入webpack ，监控并更新js模块的工作vue等框架自己做了，否则需要自己手动监控 
         hotOnly: true
@@ -77,31 +124,8 @@ module.exports = {
             }
         ],
     },
-    plugins: [
-        //打包前先清空dist目录
-        new CleanWebpackPlugin(),
-        //通过new一下这个类来使用插件
-        new HtmlWebpackPlugin({
-            //在src目录下创建一个index.html页面当做模板来使用
-            title: 'react-summary',
-            template: './src/index.html',
-            hash: true,//会在打包好的bundle.js后面加上hash串
-            inject: 'body',//js等具体注入的位置
-        }),
-        //拷贝静态文件
-        new CopyWebpackPlugin([
-            {
-                from: 'src/public/',
-                to:''
-            }
-        ]),
-        // 拆分后会把css文件放到dist目录下的css/style.css
-        new ExtractTextWebpackPlugin('css/style.css'),
-        // 热更新，热更新不是刷新
-        new webpack.HotModuleReplacementPlugin(),
-        
-    ],
-    devtool: 'source-map',     //设置文件映射
+    plugins: plu,
+    devtool: pro ? '' : 'source-map',     //设置文件映射
     resolve: {
         // 别名
         alias: {

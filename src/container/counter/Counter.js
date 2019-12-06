@@ -45,4 +45,5 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Counter);
+//connect函数作用是从Redux state树种读取部分数据，并通过props来把这些数据提供给要渲染的组件。也传递dispatch(action)函数到props
 
