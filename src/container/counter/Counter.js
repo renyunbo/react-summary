@@ -1,8 +1,7 @@
 
 import React, { Component } from 'react';
-import { increment, decrement, reset } from '../../redux/actions/couter';
-
 import { connect } from 'react-redux';
+import { increment, decrement, reset } from '../../redux/actions/couter';
 
 class Counter extends Component {
   render() {

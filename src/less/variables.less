@@ -1,0 +1,122 @@
+@import './color/colorPalette';
+@import './mixins/index';
+//
+// Variables
+// --------------------------------------------------
+
+
+//== Colors
+
+// color palettes
+@blue-1: color(~`colorPalette("@{blue-6}", 1)`);
+@blue-2: color(~`colorPalette("@{blue-6}", 2)`);
+@blue-3: color(~`colorPalette("@{blue-6}", 3)`);
+@blue-4: color(~`colorPalette("@{blue-6}", 4)`);
+@blue-5: color(~`colorPalette("@{blue-6}", 5)`);
+@blue-6: #37BF8B;
+@blue-7: color(~`colorPalette("@{blue-6}", 7)`);
+@blue-8: color(~`colorPalette("@{blue-6}", 8)`);
+@blue-9: color(~`colorPalette("@{blue-6}", 9)`);
+@blue-10: color(~`colorPalette("@{blue-6}", 10)`);
+
+@base-color				: @blue-6;
+@primary-color          : @blue-6;
+@highlight-color        : #37BF8B;
+@delete-color           : #F37474;
+@warning-color          : @delete-color;
+@y-icon-color           : #FFB461;
+@r-icon-color           : #FF5152;
+@bg-color           	: #F5F5F5;
+@pick-color          	: @highlight-color ;
+@error-color            : @delete-color;
+@white            		: #fff;
+@black 					: #000;
+@gray-color				: #f9f9f9;
+
+@body-bg:               #fff;
+@text-gray-color:       rgba(0, 0, 0, 0.65);
+
+@text-color:            #000000;
+
+@link-color:            #499EE1;
+@link-hover-color:      darken(@link-color, 15%);
+@link-hover-decoration: underline;
+@border-color			:#e9e9e9;
+
+@font-family            :   BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+@font-size-sm         	: 13px;
+@font-size-base         : 14px;
+@font-size-md           : @font-size-base + 2px;
+@font-size-lg           : @font-size-md  + 2px;
+@font-size-highlight 	: 24px;
+@line-height-base       : 1.5;
+@border-radius-base     : 4px;
+@border-radius-sm       : 2px;
+
+
+
+//icon  style
+@icon-gray 				: #9B9B9B;
+
+@http:  "http://localhost:3005/" !default;
+
+
+
+
+
+
+
+
+
+
+
+/************************** HRO项目 **************************/
+
+// input输入框样式
+
+@input-color : #d9d9d9;
+
+
+
+// 文本内容样式
+
+@text-color     : #999;
+@text-title     : #333;
+// @text-blue-color: #108ee9;
+@text-blue-color:#4986ef;
+@text-red-color : #EE3D11;
+// @light-text-blue-color: #4880FF;
+@light-text-blue-color: #4986EF;
+@bg-color-grey-color: #DBDBDB;
+@border-grey-color: #DFDFDF;
+@dark-text-grey:#151515; //color: rgba(0, 0, 0, 0.85)
+@border-divide:#E5E5E5;
+@lable-text-color:#595959;
+@lable-text-color-agentDetail:#171717;
+
+
+
+@text-red4-color:  color(~`colorPalette("@{text-red-color}", 4)`);
+
+@text-blue2-color: color(~`colorPalette("@{text-blue-color}", 2)`);
+@text-blue4-color: color(~`colorPalette("@{text-blue-color}", 4)`);
+@text-blue5-color: color(~`colorPalette("@{text-blue-color}", 5)`);
+@text-blue7-color: color(~`colorPalette("@{text-blue-color}", 7)`);
+
+//border样式
+
+@border-color : #DBE5F0;//#e9e9e9;
+
+
+//背景颜色
+@background-color     :#60a7f0;
+@background-gray-color:#f9f9f9;
+@background-blue-color:#ecf6fd;
+
+
+// label  字体color
+
+@label-color:rgba(0, 0, 0, 0.65);
+
+@background-color-new:rgb(243, 246, 248);

@@ -1,0 +1,38 @@
+@import "../../../less/variables";
+
+.search_check_wrap{ 
+    min-height:75px;
+    line-height:75px; 
+	border-bottom: 1px solid #F4F4F7;
+    // border-radius: 5px;
+}
+.check_item_wrap:hover{
+	// box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 8px 0px;
+	// transform: scale(1.04);
+}
+.check_item_wrap{
+	width:100%;
+	position: relative; 
+	transition: all .4s; 
+    label{
+		font-size: 14px;
+		color: #6C7596;
+		font-weight: 400;
+    }
+}
+.ext_item_wrap{
+	position: absolute;
+    top: 20px;
+    left: 23px;
+    font-size: 12px;
+    color: #6C7596;
+}
+
+.check_item_wrap.active{
+	label{  
+		color: #3D88D6; 
+    }
+    .ext_item_wrap{
+    	color: #3D88D6; 
+    }
+}

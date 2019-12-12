@@ -1,0 +1,32 @@
+.search_group_wrap{  
+	min-widdth:780px;
+	label{
+		font-weight: 400;
+		text-align: left;
+	} 
+}
+@media only screen and (max-width: 1024px) {
+    .search_group_wrap{ 
+		max-width:780px;
+    }
+}
+@media only screen and (max-width: 1200px) {
+    .search_group_wrap{ 
+		max-width:980px;
+    }
+}
+@media only screen and (max-width: 1440px) {
+    .search_group_wrap{ 
+		max-width:1080px;
+    }
+}
+@media only screen and (max-width: 1600px) {
+    .search_group_wrap{ 
+		max-width:1380px;
+    }
+}
+@media only screen and (min-width: 1600px) {
+    .search_group_wrap{ 
+		max-width:100%;
+    }
+}

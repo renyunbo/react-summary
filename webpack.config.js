@@ -76,13 +76,17 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.less$/,     // 解析less
+                test: /\.less|.les$/,     // 解析less
                 use: ExtractTextWebpackPlugin.extract({
                     // 将css用link的方式引入就不再需要style-loader了
                     fallback: "style-loader",
                     use: ['css-loader', 'postcss-loader', 'less-loader'] // 从右向左解析
                 })
             },
+            // {
+            //     test:/\.less|.les$/,
+            //     use:['style-loader','css-loader','less-loader']
+            // },
             {
                 test: /\.scss$/,     // 解析scss
                 use: ExtractTextWebpackPlugin.extract({
