@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form'
 import InputField from '../../components/weidget/reduxForm/InputField';
 import { connect } from 'react-redux';
+import {getUserInfo} from '../../../src/con'
 
 
 class ContractForm extends Component {
